@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test your knowledge in the world of networking with our comprehensive quiz">
+    <title>Networking Knowledge Quiz | Check Your Expertise</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#" id="home-link">
+                    <i class="fas fa-network-wired"></i>
+                    <span>NetworkQuiz</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" id="home-button" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </div>
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn" aria-label="Toggle Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="particles-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Networking Knowledge Quiz</h1>
+            <p class="hero-tagline">Test your knowledge in networking and information technology</p>
+            <div class="hero-badges">
+                <span class="badge"><i class="fas fa-network-wired"></i> IP Addresses</span>
+                <span class="badge"><i class="fas fa-layer-group"></i> OSI Models</span>
+                <span class="badge"><i class="fas fa-project-diagram"></i> TCP/IP</span>
+                <span class="badge"><i class="fas fa-sitemap"></i> Network Types</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <section id="topic-selection" class="quiz-section">
+            <div class="section-header">
+                <h2><i class="fas fa-list-alt"></i> Choose a Topic</h2>
+                <p class="section-description">Select the topic you want to test your knowledge in</p>
+            </div>
+            
+            <div class="topic-selection-container">
+                <div class="category-selector">
+                    <div class="select-wrapper">
+                        <select id="topic-dropdown" class="topic-dropdown">
+                            <option value="All Categories">All Categories</option>
+                            <option value="IP Addressing">IP Addressing</option>
+                            <option value="Introduction">Introduction</option>
+                            <option value="OSI & TCP/IP Models">OSI & TCP/IP Models</option>
+                            <option value="Subnetting">Subnetting</option>
+                            <option value="The OSI Model">The OSI Model</option>
+                            <option value="The TCP/IP Model">The TCP/IP Model</option>
+                            <option value="True/False Questions">True/False Questions</option>
+                            <option value="Types of Computer Network">Types of Computer Network</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+                
+                <div class="quiz-options">
+                    <div class="option-card">
+                        <div class="option-icon"><i class="fas fa-question-circle"></i></div>
+                        <div class="option-details">
+                            <h3>Number of Questions</h3>
+                            <p>Random questions will be selected from the chosen topic</p>
+                        </div>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-icon"><i class="fas fa-clock"></i></div>
+                        <div class="option-details">
+                            <h3>No Time Limit</h3>
+                            <p>Take your time to answer all questions accurately</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="start-quiz-btn" class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    <span>Start Quiz</span>
+                </button>
+            </div>
+        </section>
+
+        <main id="quiz-container" class="quiz-section" style="display: none;">
+            <div class="quiz-header">
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <div class="question-counter">
+                        <span id="current-q-num">1</span> / <span id="total-q-num">X</span>
+                    </div>
+                </div>
+                <div class="quiz-category">
+                    <i class="fas fa-folder"></i>
+                    <span id="current-category">Networking</span>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3 class="question-title">Question</h3>
+                </div>
+                <p class="question-text">Loading question...</p>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Answer options will be added here dynamically -->
+                </div>
+                
+                <div class="answer-explanation" id="answer-explanation" style="display: none;">
+                    <div class="explanation-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h4>Answer Explanation</h4>
+                    </div>
+                    <div class="explanation-content" id="explanation-content">
+                        <!-- Answer explanation will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <div class="nav-left">
+                    <button id="return-home-btn" class="btn btn-outline">
+                        <i class="fas fa-home"></i>
+                        <span>Return to Home</span>
+                    </button>
+                </div>
+                <div class="nav-right">
+                    <button id="prev-btn" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    <button id="next-btn" class="btn btn-primary">
+                        <span>Next</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button id="submit-btn" class="btn btn-success" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Submit Answers</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <section id="results-section" class="quiz-section results-section" style="display: none;">
+            <div class="results-header">
+                <div class="results-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h2>Quiz Results</h2>
+                <p class="results-tagline">Here's a summary of your performance in this quiz</p>
+            </div>
+            
+            <div class="score-card">
+                <div class="score-chart">
+                    <div class="chart-container">
+                        <div id="score-circle" class="score-circle">
+                            <span class="result-percentage">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="score-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon correct"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Correct Answers</span>
+                            <span id="score-display" class="stat-value">0/0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon incorrect"><i class="fas fa-times-circle"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Incorrect Answers</span>
+                            <span id="incorrect-count" class="stat-value">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon time"><i class="fas fa-clock"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Time Spent</span>
+                            <span id="time-spent" class="stat-value">-</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon total"><i class="fas fa-list"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total Questions</span>
+                            <span id="total-count" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button id="return-home-from-results" class="btn btn-outline">
+                    <i class="fas fa-home"></i>
+                    <span>Return to Home</span>
+                </button>
+                <button id="retry-quiz" class="btn btn-primary">
+                    <i class="fas fa-redo-alt"></i>
+                    <span>Retry Quiz</span>
+                </button>
+            </div>
+            
+            <div class="results-details">
+                <h3>Answer Details</h3>
+                <div id="detailed-results" class="detailed-results">
+                    <!-- Answer details will be added here dynamically -->
+                </div>
+            </div>
+            
+            <div class="result-actions">
+                <button id="restart-btn" class="btn btn-primary">
+                    <i class="fas fa-redo"></i>
+                    <span>Restart Quiz</span>
+                </button>
+                <button id="back-to-topics-btn" class="btn btn-secondary">
+                    <i class="fas fa-list"></i>
+                    <span>Back to Topics</span>
+                </button>
+                <button id="share-results-btn" class="btn btn-accent">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share Results</span>
+                </button>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-branding">
+                <div class="footer-logo">
+                    <i class="fas fa-network-wired"></i>
+                    <span>NetworkQuiz</span>
+                </div>
+                <p class="footer-tagline">Networking and IT Knowledge Testing Platform</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-link-group">
+                    <h4>Popular Topics</h4>
+                    <ul>
+                        <li><a href="#">OSI Model</a></li>
+                        <li><a href="#">IP Addressing</a></li>
+                        <li><a href="#">Wireless Networks</a></li>
+                        <li><a href="#">Network Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-link-group">
+                    <h4>Connect With Us</h4>
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="https://www.facebook.com/Mahmoud3ussein" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>All Rights Reserved &copy; 2025 NetworkQuiz</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script src="cursor-effect.js"></script>
+</body>
+</html>
